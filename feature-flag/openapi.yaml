@@ -1,0 +1,87 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: FeatureFlag API
+    version: 0.0.1
+paths:
+    /x/admin/feature-flag/flag:
+        get:
+            tags:
+                - FeatureFlag
+            operationId: FeatureFlag_GetFeatureFlag
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.GetFeatureFlagReply'
+    /x/admin/feature-flag/flag/create:
+        post:
+            tags:
+                - FeatureFlag
+            operationId: FeatureFlag_CreateFeatureFlag
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.CreateFeatureFlagReply'
+    /x/admin/feature-flag/flag/delete:
+        post:
+            tags:
+                - FeatureFlag
+            operationId: FeatureFlag_DeleteFeatureFlag
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.DeleteFeatureFlagReply'
+    /x/admin/feature-flag/flag/update:
+        post:
+            tags:
+                - FeatureFlag
+            operationId: FeatureFlag_UpdateFeatureFlag
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.UpdateFeatureFlagReply'
+    /x/admin/feature-flag/flags:
+        get:
+            tags:
+                - FeatureFlag
+            operationId: FeatureFlag_ListFeatureFlag
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.admin.v1.ListFeatureFlagReply'
+components:
+    schemas:
+        api.admin.v1.CreateFeatureFlagReply:
+            type: object
+            properties: {}
+        api.admin.v1.DeleteFeatureFlagReply:
+            type: object
+            properties: {}
+        api.admin.v1.GetFeatureFlagReply:
+            type: object
+            properties: {}
+        api.admin.v1.ListFeatureFlagReply:
+            type: object
+            properties: {}
+        api.admin.v1.UpdateFeatureFlagReply:
+            type: object
+            properties: {}
+tags:
+    - name: FeatureFlag

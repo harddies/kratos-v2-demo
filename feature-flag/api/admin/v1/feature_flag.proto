@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package api.admin.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "feature-flag/api/admin/v1;v1";
+
+service FeatureFlag {
+	rpc CreateFeatureFlag (CreateFeatureFlagRequest) returns (CreateFeatureFlagReply) {
+		option (google.api.http) = {
+			post: "/x/admin/feature-flag/flag/create"
+		};
+	};
+	rpc UpdateFeatureFlag (UpdateFeatureFlagRequest) returns (UpdateFeatureFlagReply) {
+		option (google.api.http) = {
+			post: "/x/admin/feature-flag/flag/update"
+		};
+	};
+	rpc DeleteFeatureFlag (DeleteFeatureFlagRequest) returns (DeleteFeatureFlagReply) {
+		option (google.api.http) = {
+			post: "/x/admin/feature-flag/flag/delete"
+		};
+	};
+	rpc GetFeatureFlag (GetFeatureFlagRequest) returns (GetFeatureFlagReply) {
+		option (google.api.http) = {
+			get: "/x/admin/feature-flag/flag"
+		};
+	};
+	rpc ListFeatureFlag (ListFeatureFlagRequest) returns (ListFeatureFlagReply) {
+		option (google.api.http) = {
+			get: "/x/admin/feature-flag/flags"
+		};
+	};
+}
+
+message CreateFeatureFlagRequest {}
+message CreateFeatureFlagReply {}
+
+message UpdateFeatureFlagRequest {}
+message UpdateFeatureFlagReply {}
+
+message DeleteFeatureFlagRequest {}
+message DeleteFeatureFlagReply {}
+
+message GetFeatureFlagRequest {}
+message GetFeatureFlagReply {}
+
+message ListFeatureFlagRequest {}
+message ListFeatureFlagReply {}
