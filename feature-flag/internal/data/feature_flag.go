@@ -33,5 +33,10 @@ func (r *FeatureFlagRepoImpl) GetByFeatureFlagId(c context.Context, featureFlagI
 		}
 		return
 	}
+
+	featureFlagDo = &biz.FeatureFlagDO{
+		FeatureFlagId: po.FeatureFlagId,
+		FeatureKey:    po.FeatureKey,
+	}
 	return
 }
