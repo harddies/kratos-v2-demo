@@ -6,7 +6,9 @@
 package main
 
 import (
+	"feature-flag/internal/biz"
 	"feature-flag/internal/conf"
+	"feature-flag/internal/data"
 	"feature-flag/internal/server"
 	"feature-flag/internal/service"
 
@@ -17,5 +19,5 @@ import (
 
 // wireApp init kratos application.
 func wireApp(*conf.Server, *conf.Data, log.Logger) (*kratos.App, func(), error) {
-	panic(wire.Build(server.ProviderSet, service.ProviderSet, newApp))
+	panic(wire.Build(server.ProviderSet, data.ProviderSet, biz.ProviderSet, service.ProviderSet, newApp))
 }

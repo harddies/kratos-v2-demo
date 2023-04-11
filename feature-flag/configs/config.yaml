@@ -8,7 +8,7 @@ server:
 data:
   database:
     driver: mysql
-    source: feature-flag:111111@tcp(192.168.1.128:31306)/test
+    source: feature-flag:111111@tcp(192.168.1.128:31306)/feature-flag
   redis:
     addr: 127.0.0.1:6379
     read_timeout: 0.2s

@@ -11,6 +11,11 @@ paths:
             tags:
                 - FeatureFlag
             operationId: FeatureFlag_GetFeatureFlag
+            parameters:
+                - name: featureFlagId
+                  in: query
+                  schema:
+                    type: string
             responses:
                 "200":
                     description: OK

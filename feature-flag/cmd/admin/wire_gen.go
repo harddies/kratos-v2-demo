@@ -7,7 +7,9 @@
 package main
 
 import (
+	"feature-flag/internal/biz"
 	"feature-flag/internal/conf"
+	"feature-flag/internal/data"
 	"feature-flag/internal/server"
 	"feature-flag/internal/service"
 	"github.com/go-kratos/kratos/v2"
@@ -21,11 +23,18 @@ import (
 // Injectors from wire.go:
 
 // wireApp init kratos application.
-func wireApp(confServer *conf.Server, data *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
-	featureFlagService := service.NewFeatureFlagService(logger)
+func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
+	dataData, cleanup, err := data.NewData(confData, logger)
+	if err != nil {
+		return nil, nil, err
+	}
+	iFeatureFlagRepo := data.NewFeatureFlagRepoImpl(dataData)
+	featureFlagDS := biz.NewFeatureFlagDS(iFeatureFlagRepo, logger)
+	featureFlagService := service.NewFeatureFlagService(logger, featureFlagDS)
 	grpcServer := server.NewGRPCServer(confServer, featureFlagService, logger)
 	httpServer := server.NewHTTPServer(confServer, featureFlagService, logger)
 	app := newApp(logger, grpcServer, httpServer)
 	return app, func() {
+		cleanup()
 	}, nil
 }

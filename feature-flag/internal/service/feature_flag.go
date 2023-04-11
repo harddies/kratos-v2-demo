@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"feature-flag/internal/biz"
 
 	pb "feature-flag/api/admin/v1"
 
@@ -12,11 +13,14 @@ type FeatureFlagService struct {
 	pb.UnimplementedFeatureFlagServer
 
 	log log.Logger
+
+	featureFlagDS *biz.FeatureFlagDS
 }
 
-func NewFeatureFlagService(log log.Logger) *FeatureFlagService {
+func NewFeatureFlagService(log log.Logger, featureFlagDS *biz.FeatureFlagDS) *FeatureFlagService {
 	return &FeatureFlagService{
-		log: log,
+		log:           log,
+		featureFlagDS: featureFlagDS,
 	}
 }
 
@@ -33,7 +37,11 @@ func (s *FeatureFlagService) DeleteFeatureFlag(ctx context.Context, req *pb.Dele
 }
 
 func (s *FeatureFlagService) GetFeatureFlag(ctx context.Context, req *pb.GetFeatureFlagRequest) (*pb.GetFeatureFlagReply, error) {
-	log.Infof("s.GetFeatureFlag %+v", req)
+	featureFlagDO, err := s.featureFlagDS.GetFeatureFlag(ctx, req.GetFeatureFlagId())
+	if err != nil {
+		return nil, err
+	}
+	log.Infof("s.GetFeatureFlag req(%+v) featureFlagDO(%+v)", req, featureFlagDO)
 	return &pb.GetFeatureFlagReply{}, nil
 }
 
