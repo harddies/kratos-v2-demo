@@ -81,7 +81,11 @@ components:
             properties: {}
         api.admin.v1.GetFeatureFlagReply:
             type: object
-            properties: {}
+            properties:
+                featureFlagId:
+                    type: string
+                featureKey:
+                    type: string
         api.admin.v1.ListFeatureFlagReply:
             type: object
             properties: {}

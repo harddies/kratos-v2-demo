@@ -42,7 +42,10 @@ func (s *FeatureFlagService) GetFeatureFlag(ctx context.Context, req *pb.GetFeat
 		return nil, err
 	}
 	log.Infof("s.GetFeatureFlag req(%+v) featureFlagDO(%+v)", req, featureFlagDO)
-	return &pb.GetFeatureFlagReply{}, nil
+	return &pb.GetFeatureFlagReply{
+		FeatureFlagId: featureFlagDO.FeatureFlagId,
+		FeatureKey:    featureFlagDO.FeatureKey,
+	}, nil
 }
 
 func (s *FeatureFlagService) ListFeatureFlag(ctx context.Context, req *pb.ListFeatureFlagRequest) (*pb.ListFeatureFlagReply, error) {

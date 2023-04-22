@@ -46,7 +46,10 @@ message DeleteFeatureFlagReply {}
 message GetFeatureFlagRequest {
 	string feature_flag_id = 1;
 }
-message GetFeatureFlagReply {}
+message GetFeatureFlagReply {
+	string feature_flag_id = 1;
+	string feature_key = 2;
+}
 
 message ListFeatureFlagRequest {}
 message ListFeatureFlagReply {}
